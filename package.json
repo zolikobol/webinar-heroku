@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/zolikobol/webinar-heroku#readme",
   "dependencies": {
-    "actions-on-google": "^2.3.0"
+    "actions-on-google": "^2.3.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
   }
 }
