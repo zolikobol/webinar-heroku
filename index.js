@@ -1,22 +1,17 @@
-const { DialogflowApp } = require('actions-on-google');
+const { dialogflow } = require('actions-on-google');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const http = require('http');
 const PORT = process.env.PORT || 5000;
 
-const server = http.createServer((req, res) => {
-    const app = new DialogflowApp({ request: req, response: res });
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   console.log('=======================');
-//   console.log(req);
-//   console.log('=======================');
-    const welcomeIntent = (app) => {
-        app.ask('Hello how are you?');
-    }
-    const actionMap = new Map();
-    actionMap.set('input.welcome', welcomeIntent);
-    app.handleRequest(actionMap);
-});
-server.listen(PORT, () => {
-  console.log(`Server running on ${PORT}/`);
-});
+const app = dialogflow();
+
+app.intent('Default Welcome Intent', conv => {
+    conv.ask('Hi, how is it going?');
+})
+
+const expressApp = express().use(bodyParser.json());
+
+expressApp.post('/fulfillment', app);
+
+expressApp.listen(PORT);
