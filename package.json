@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/zolikobol/webinar-heroku/issues"
   },
-  "homepage": "https://github.com/zolikobol/webinar-heroku#readme"
+  "homepage": "https://github.com/zolikobol/webinar-heroku#readme",
+  "dependencies": {
+    "actions-on-google": "^2.3.0"
+  }
 }
