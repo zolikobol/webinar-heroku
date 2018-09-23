@@ -1,12 +1,12 @@
-const { actionssdk } = require('actions-on-google');
+const { dialogflow } = require('actions-on-google');
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 5000;
 
-const app = actionssdk();
+const app = dialogflow();
 
-app.intent('input.welcome', conv => {
+app.intent('Default Welcome Intent', conv => {
     conv.ask('Hi, how is it going?');
 })
 
