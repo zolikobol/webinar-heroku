@@ -11,7 +11,7 @@ app.intent('Default Welcome Intent', conv => {
 })
 
 app.intent('weather intent', conv => {
-    conv.tell('todays weather is 5 C');
+    conv.close('todays weather is 5 C');
 })
 
 const expressApp = express().use(bodyParser.json());
