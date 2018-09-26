@@ -19,7 +19,7 @@ const expressApp = express().use(bodyParser.json());
 
 // expressApp.post('/fulfillment', app);
 
-app.get('/fulfillment', function (req, res) {
+expressApp.get('/fulfillment', function (req, res) {
     res.send(JSON.stringify({ Hello: 'World'}));
    });
 
