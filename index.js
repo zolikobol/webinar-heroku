@@ -17,6 +17,5 @@ app.intent('weather intent', conv => {
 const expressApp = express().use(bodyParser.json());
 
 expressApp.post('/fulfillment', app);
-expressApp.use(express.static('build'))
 
 expressApp.listen(PORT);
