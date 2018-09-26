@@ -18,7 +18,7 @@ const expressApp = express().use(bodyParser.json());
 
 expressApp.post('/fulfillment', (req, res) => {
     console.log('====================================');
-    console.log(fulfillment);
+    console.log('fulfillment');
     console.log('====================================');
 });
 
