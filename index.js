@@ -12,14 +12,11 @@ app.intent('Default Welcome Intent', conv => {
 
 app.intent('weather intent', conv => {
     conv.close('todays weather is 5 C');
+    res.end();
 })
 
 const expressApp = express().use(bodyParser.json());
 
-expressApp.post('/fulfillment', (req, res) => {
-    console.log('====================================');
-    console.log('fulfillment');
-    console.log('====================================');
-});
+expressApp.post('/fulfillment', app);
 
 expressApp.listen(PORT);
