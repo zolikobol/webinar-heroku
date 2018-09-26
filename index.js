@@ -16,6 +16,10 @@ app.intent('weather intent', conv => {
 
 const expressApp = express().use(bodyParser.json());
 
-expressApp.post('/fulfillment', app);
+expressApp.post('/fulfillment', (req, res) => {
+    console.log('====================================');
+    console.log(fulfillment);
+    console.log('====================================');
+});
 
 expressApp.listen(PORT);
