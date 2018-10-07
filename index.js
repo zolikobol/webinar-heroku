@@ -13,6 +13,9 @@ app.intent('Default Welcome Intent', conv => {
 
 app.intent('weather intent', conv => {
     const city = 'kosice;'
+    console.log('====================================');
+    console.log(city);
+    console.log('====================================');
     getWeatherInfo(city)
     .then(response => {
         console.log('====================================');
