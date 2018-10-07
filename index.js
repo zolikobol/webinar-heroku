@@ -20,7 +20,7 @@ app.intent('weather intent', conv => {
             conv.ask('Sorry, I dod not get that')
         } else {
             const weatherResult = JSON.parse(resp);
-            conv.tell(`The weather in ${weatherResult.name} is ${weatherResult.main.temp}`);
+            conv.close(`The weather in ${weatherResult.name} is ${weatherResult.main.temp}`);
         }
     });
     // getWeatherInfo(city)
