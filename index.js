@@ -23,16 +23,6 @@ app.intent('weather intent', conv => {
             conv.close(`The weather in ${weatherResult.name} is ${weatherResult.main.temp}`);
         }
     });
-    // getWeatherInfo(city)
-    // .then(response => {
-    //     console.log('====================================');
-    //     console.log(response);
-    //     console.log('====================================');
-    //     conv.tell(`The weather in ${response.name} is ${response.main.temp} C`);
-    // })
-    // .catch(error => {
-    //     conv.ask('Sorry, I did not get that!')
-    // })
 })
 
 const expressApp = express().use(bodyParser.json());
