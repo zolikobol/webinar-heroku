@@ -15,6 +15,9 @@ app.intent('weather intent', conv => {
     const city = 'kosice;'
     getWeatherInfo(city)
     .then(response => {
+        console.log('====================================');
+        console.log(response);
+        console.log('====================================');
         conv.tell(`The weather in ${response.name} is ${response.main.temp} C`);
     })
     .catch(error => {
