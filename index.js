@@ -15,14 +15,19 @@ app.intent('weather intent', conv => {
     const city = 'Kosice';
     const APPID = '20408cb2ac4925b573f7ab56e4042863';
     const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APPID}`;
-    request(apiUrl, {method: 'GET'} ,(err, body, resp) => {
-        if (err) {
-            conv.ask('Sorry, I dod not get that')
-        } else {
-            const weatherResult = JSON.parse(resp);
-            conv.close(`The weather in ${weatherResult.name} is ${weatherResult.main.temp}`);
-        }
-    });
+    return new Promise((resolve, reject) => {
+        request(apiUrl, {method: 'GET'} ,(err, body, resp) => {
+            if (err) {
+                conv.ask('Sorry, I dod not get that')
+                reject(err);
+            } else {
+                const weatherResult = JSON.parse(resp);
+                conv.close(`The weather in ${weatherResult.name} is ${weatherResult.main.temp}`);
+                resolve();
+            }
+        });
+    })
+    
 })
 
 const expressApp = express().use(bodyParser.json());
