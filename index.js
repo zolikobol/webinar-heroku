@@ -11,7 +11,10 @@ app.intent('Default Welcome Intent', conv => {
     conv.ask('Hi, how is it going?');
 })
 
-app.intent('weather intent', conv => {
+app.intent('weather intent', (conv, params) => {
+    console.log('=====params===============================');
+    console.log(params);
+    console.log('====================================');
     const city = 'Kosice';
     const APPID = '20408cb2ac4925b573f7ab56e4042863';
     const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APPID}`;
@@ -22,7 +25,7 @@ app.intent('weather intent', conv => {
                 reject(err);
             } else {
                 const weatherResult = JSON.parse(resp);
-                conv.close(`The weather in ${weatherResult.name} is ${weatherResult.main.temp}`);
+                conv.close(`The weather in ${weatherResult.name} is ${weatherResult.main.temp} C`);
                 resolve();
             }
         });
