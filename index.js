@@ -1,6 +1,6 @@
 const { dialogflow } = require('actions-on-google');
 const express = require('express');
-const rp = require('request-promise');
+const request = require('request');
 const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 5000;
@@ -12,20 +12,27 @@ app.intent('Default Welcome Intent', conv => {
 })
 
 app.intent('weather intent', conv => {
-    const city = 'kosice;'
-    console.log('====================================');
-    console.log(city);
-    console.log('====================================');
-    getWeatherInfo(city)
-    .then(response => {
-        console.log('====================================');
-        console.log(response);
-        console.log('====================================');
-        conv.tell(`The weather in ${response.name} is ${response.main.temp} C`);
-    })
-    .catch(error => {
-        conv.ask('Sorry, I did not get that!')
-    })
+    const city = 'Kosice';
+    const APPID = '20408cb2ac4925b573f7ab56e4042863';
+    const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APPID}`;
+    request(apiUrl, {method: 'GET'} ,(err, body, resp) => {
+        if (err) {
+            conv.ask('Sorry, I dod not get that')
+        } else {
+            const weatherResult = JSON.parse(resp);
+            conv.tell(`The weather in ${weatherResult.name} is ${weatherResult.main.temp}`);
+        }
+    });
+    // getWeatherInfo(city)
+    // .then(response => {
+    //     console.log('====================================');
+    //     console.log(response);
+    //     console.log('====================================');
+    //     conv.tell(`The weather in ${response.name} is ${response.main.temp} C`);
+    // })
+    // .catch(error => {
+    //     conv.ask('Sorry, I did not get that!')
+    // })
 })
 
 const expressApp = express().use(bodyParser.json());
@@ -39,7 +46,7 @@ expressApp.post('/fulfillment', app);
 const getWeatherInfo = (location) => {
     const APPID = '20408cb2ac4925b573f7ab56e4042863';
     const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${APPID}`;
-    return rp(apiUrl);
+    return request(apiUrl);
 }
 
 expressApp.listen(PORT);
