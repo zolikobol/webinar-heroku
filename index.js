@@ -2,6 +2,7 @@ const { dialogflow } = require('actions-on-google');
 const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
+const APPID = require('./keys.json');
 
 const PORT = process.env.PORT || 5000;
 
