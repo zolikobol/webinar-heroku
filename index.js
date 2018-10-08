@@ -19,9 +19,15 @@ app.intent('weather intent', (conv, params) => {
         request(apiUrl, {method: 'GET'} ,(err, body, resp) => {
             if (err) {
                 conv.ask('Sorry, I dod not get that')
+                console.log('=============err=======================');
+                console.log(err);
+                console.log('====================================');
                 reject(err);
             } else {
                 const weatherResult = JSON.parse(resp);
+                console.log('===========weatherResult=========================');
+                console.log(weatherResult);
+                console.log('====================================');
                 conv.close(`The weather in ${weatherResult.name} is ${weatherResult.main.temp} C`);
                 resolve();
             }
