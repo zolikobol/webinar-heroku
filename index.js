@@ -28,7 +28,7 @@ app.intent('weather intent', (conv, params) => {
                 console.log('===========weatherResult=========================');
                 console.log(weatherResult);
                 console.log('====================================');
-                conv.close(`The weather in ${weatherResult.name} is ${weatherResult.main.temp} C`);
+                conv.ask(`The weather in ${weatherResult.name} is ${weatherResult.main.temp} C`);
                 resolve();
             }
         });
